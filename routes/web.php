@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\IndexController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,10 @@ use App\Http\Controllers\CatalogController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+// маршрут для главной страницы без указания метода
+Route::get('/', IndexController::class)->name('index');
 
 Route::get('/catalog/index', [CatalogController::class, 'index'])->name('catalog.index');
 Route::get('/catalog/category/{slug}', [CatalogController::class, 'category'])->name('catalog.category');
@@ -24,6 +27,5 @@ Route::get('/catalog/brand/{slug}', [CatalogController::class, 'brand'])->name('
 Route::get('/catalog/product/{slug}', [CatalogController::class, 'product'])->name('catalog.product');
 
 
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
