@@ -1,7 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+
+
+use App\Models\Basket;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model {
@@ -17,5 +20,14 @@ class Product extends Model {
      */
     public function brand() {
         return $this->belongsTo(Brand::class);
+    }
+
+    /**
+     * Связь «многие ко многим» таблицы `products` с таблицей `baskets`
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function baskets() {
+        return $this->belongsToMany(Basket::class)->withPivot('quantity');
     }
 }
