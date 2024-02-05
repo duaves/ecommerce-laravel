@@ -4,7 +4,7 @@ use App\Http\Controllers\BasketController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\IndexController;
-
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +33,10 @@ Route::get('/basket/checkout', [BasketController::class, 'checkout'])->name('bas
 Route::post('/basket/add/{id}', [BasketController::class, 'add'])
     ->where('id', '[0-9]+')
     ->name('basket.add');
+
+Route::get('/like/index', [LikeController::class, 'index'])->name('like.index');
+Route::post('/like/add/{id}', [LikeController::class, 'index'])
+    ->where('id', '[0-9]+')
+    ->name('like.add');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

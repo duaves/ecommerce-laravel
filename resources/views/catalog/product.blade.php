@@ -24,6 +24,14 @@
                                    class="form-control mx-2 w-25">
                             <button type="submit" class="btn btn-success">Добавить в корзину</button>
                         </form>
+                        <form action="{{ route('like.add', ['id' => $product->id]) }}"
+                            method="post" class="form-inline">
+                          @csrf
+                          <label for="input-quantity">Количество</label>
+                          <input type="text" name="quantity" id="input-quantity" value="1"
+                                 class="form-control mx-2 w-25">
+                          <button type="submit" class="btn btn-success">Добавить в избранное</button>
+                      </form>
                     </div>
                 </div>
                 <div class="row">

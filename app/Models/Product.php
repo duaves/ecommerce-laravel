@@ -30,4 +30,8 @@ class Product extends Model {
     public function baskets() {
         return $this->belongsToMany(Basket::class)->withPivot('quantity');
     }
+
+    public function likes(){
+        return $this->belongsToMany(Like::class)->withPivot('quantity');
+    }
 }
