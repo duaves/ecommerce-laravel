@@ -7,15 +7,21 @@ use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
-    public function index(){
-        return view('like.index');  
+    public function index(Request $request) {
+        $like_id = $request->cookie('like_id');
+        if (!empty($like_id)) {
+            $products = Like::findOrFail($like_id)->products;
+            return view('like.index', compact('products'));
+        } else {
+            abort(404);
+        }
     }
 
     public function add(Request $request, $id){
         //Получает значение cookie с именем 'like_id'. Это идентификатор избранного, если он уже существует.
         $like_id = $request->cookie('like_id');
-        //Получает значение параметра 'quantity' из запроса. Если параметр не передан, устанавливает значение по умолчанию в 1.
-        $quantity = $request->input('quantity');
+        //Параметр 'quantity' по умолчанию 1.
+        $quantity = 1;
         //Проверка существования избранного
         if(empty($like_id)){
             // если избранное еще не существует — создаем объект

@@ -33,9 +33,15 @@ Route::get('/basket/checkout', [BasketController::class, 'checkout'])->name('bas
 Route::post('/basket/add/{id}', [BasketController::class, 'add'])
     ->where('id', '[0-9]+')
     ->name('basket.add');
+Route::post('/basket/plus/{id}', [BasketController::class, 'plus'])
+    ->where('id', '[0-9]+')
+    ->name('basket.plus');
+Route::post('/basket/minus/{id}', [BasketController::class, 'minus'])
+    ->where('id', '[0-9]+')
+    ->name('basket.minus');
 
 Route::get('/like/index', [LikeController::class, 'index'])->name('like.index');
-Route::post('/like/add/{id}', [LikeController::class, 'index'])
+Route::post('/like/add/{id}', [LikeController::class, 'add'])
     ->where('id', '[0-9]+')
     ->name('like.add');
 
