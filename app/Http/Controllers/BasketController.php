@@ -75,4 +75,22 @@ class BasketController extends Controller {
         }
         Cookie::queue('basket_id', $this->basket->id, 525600);
     }
+
+    /**
+     * Удаляет товар с идентификаторм $id из корзины
+     */
+    public function remove($id) {
+        $this->basket->remove($id);
+        // выполняем редирект обратно на страницу корзины
+        return redirect()->route('basket.index');
+    }
+
+    /**
+     * Полностью очищает содержимое корзины покупателя
+     */
+    public function clear() {
+        $this->basket->delete();
+        // выполняем редирект обратно на страницу корзины
+        return redirect()->route('basket.index');
+    }
 }

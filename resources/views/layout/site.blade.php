@@ -13,9 +13,9 @@
 </head>
 <body>
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <!-- Бренд и кнопка «Гамбургер» -->
-        <a class="navbar-brand" href="/">Магазин</a>
+        <a class="navbar-brand" href="{{ route('index') }}">Магазин</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbar-example" aria-controls="navbar-example"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -35,13 +35,20 @@
                     <a class="nav-link" href="#">Контакты</a>
                 </li>
             </ul>
+
+            <!-- Этот блок расположен посередине -->
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search"
+                   placeholder="Поиск по каталогу" aria-label="Search">
+            <button class="btn btn-outline-info my-2 my-sm-0"
+                    type="submit">Искать</button>
+        </form>
             <!-- Этот блок расположен справа -->
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search"
-                       placeholder="Поиск по каталогу" aria-label="Search">
-                <button class="btn btn-outline-info my-2 my-sm-0"
-                        type="submit">Искать</button>
-            </form>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('basket.index') }}">Корзина</a>
+                </li>
+            </ul>
         </div>
     </nav>
 
