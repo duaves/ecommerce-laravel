@@ -6,8 +6,11 @@ namespace App\Models;
 
 use App\Models\Basket;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Product extends Model {
+    use HasFactory;
     /**
      * Связь «товар принадлежит» таблицы `products` с таблицей `categories`
      */

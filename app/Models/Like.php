@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Like extends Model
 {
+    use HasFactory;
     public function products() {
         return $this->belongsToMany(Product::class)->withPivot('quantity');
     }

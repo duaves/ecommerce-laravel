@@ -3,8 +3,11 @@
 use App\Http\Controllers\BasketController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +52,22 @@ Route::post('/like/add/{id}', [LikeController::class, 'add'])
     ->where('id', '[0-9]+')
     ->name('like.add');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/*
+ * Регистрация, вход в ЛК, восстановление пароля
+ */
+Route::name('user.')->prefix('user')->group(function () {
+    Auth::routes();
+});
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// добавление посредников
+Route::group([
+    'as' => 'admin.', // имя маршрута, например admin.index
+    'prefix' => 'admin', // префикс маршрута, например admin/index
+    'namespace' => 'Admin', // пространство имен контроллера
+    'middleware' => ['auth', 'admin'] // один или несколько посредников
+], function () {
+    Route::get('index', 'IndexController')->name('index');
+});

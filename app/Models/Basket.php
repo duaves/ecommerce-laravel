@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Basket extends Model
 {
+    use HasFactory;
     /**
      * Связь «многие ко многим» таблицы `baskets` с таблицей `products`
      */

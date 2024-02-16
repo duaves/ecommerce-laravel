@@ -4,10 +4,7 @@
     @foreach($items as $item)
         <li>
             <a href="{{ route('catalog.category', ['slug' => $item->slug]) }}">{{ $item->name }}</a>
-            @isset($item->children)
-                <span class="badge badge-dark">
-                    <i class="fa fa-plus"></i> <!-- бейдж с плюсом или минусом -->
-                </span>
+            @if ($item->children->count())
                 <ul>
                 @foreach($item->children as $child)
                     <li>
@@ -17,7 +14,7 @@
                     </li>
                 @endforeach
                 </ul>
-            @endisset
+            @endif
         </li>
     @endforeach
     </ul>
