@@ -20,7 +20,7 @@ class CategoryFactory extends Factory
     {
         $name = $this->faker->realText(rand(30, 40));
         return [
-            'parent_id' => rand(0, 4),
+            'parent_id' => 0,
             'name' => $name,
             'content' => $this->faker->realText(rand(150, 200)),
             'slug' => Str::slug($name),

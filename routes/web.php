@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -57,17 +58,20 @@ Route::post('/like/add/{id}', [LikeController::class, 'add'])
  * Регистрация, вход в ЛК, восстановление пароля
  */
 Route::name('user.')->prefix('user')->group(function () {
+    Route::get('index', [UserController::class, 'index'])->name('index');
     Auth::routes();
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-// добавление посредников
-Route::group([
-    'as' => 'admin.', // имя маршрута, например admin.index
-    'prefix' => 'admin', // префикс маршрута, например admin/index
-    'namespace' => 'Admin', // пространство имен контроллера
-    'middleware' => ['auth', 'admin'] // один или несколько посредников
-], function () {
-    Route::get('index', 'IndexController')->name('index');
+
+
+
+Route:: group([
+    'as' => 'admin.', 
+    'prefix' => 'admin',
+    'namespace' => 'Admin', 
+    'middleware' => ['auth', 'admin']
+], function(){
+    Route::get('index', [AdminController::class, '__invoke'])->name('index');
 });

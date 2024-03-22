@@ -22,5 +22,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ProductTableSeeder::class);
         $this->command->info('Данные для товаров');
+
+        $this->call(UserSeeder::class);
+        $this->command->info('Данные для пользователей');
     }
 }
